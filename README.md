@@ -68,6 +68,6 @@ The build is static. `vercel.json` selects the Vite preset, points at `dist/publ
 
 ## Contact
 
-- Email: vaibhavgangani12345@gmail.com
+- Email: hello@vaibhav0xq.com
 - GitHub: [vaibhav0xq](https://github.com/vaibhav0xq)
 - X: [vaibhav_0xq](https://x.com/vaibhav_0xq)

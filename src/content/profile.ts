@@ -6,7 +6,7 @@ export const identity = {
   education: 'Bachelor of Engineering in Computer Science and Engineering',
   educationPeriod: '2021 to 2024',
   company: 'Talus Labs, Inc.',
-  email: 'vaibhavgangani12345@gmail.com',
+  email: 'hello@vaibhav0xq.com',
   github: 'https://github.com/vaibhav0xq',
   x: 'https://x.com/vaibhav_0xq',
   handle: 'vaibhav_0xq',
