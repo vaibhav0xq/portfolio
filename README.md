@@ -29,6 +29,7 @@ Live: [vaibhav0xq.com](https://vaibhav0xq.com)
 - Every raster image goes through `src/components/Img.tsx`, which retries failed loads and draws a placeholder at the right aspect ratio if a file never arrives.
 - The phone menu and the lightbox trap focus, close on Escape and return focus to the element that opened them. Scrolling is locked with a counted lock so one overlay closing under another cannot unfreeze the page.
 - Copy lives in `src/content/`, not in components. `scripts/check-copy.mjs` enforces the house style: no em or en dashes, no comma before and/or, no emojis and no filler words.
+- The social card (`public/og.png`) is rendered from the same fonts, colours and hero copy by `scripts/og-card.mjs`, so it stays in step with the page. Run it again after changing the hero and bump the `?v=` on the image URLs in `index.html` so link previews refetch it.
 
 ## Development
 
@@ -58,7 +59,7 @@ src/
   lib/            GSAP and Lenis wiring, scroll lock, focus trap
   scene/          the WebGL prints and the canvas painter for their faces
   index.css       theme tokens and component classes
-scripts/          copy check, screenshot and click audit helpers, name path generator
+scripts/          copy check, screenshot and click audit helpers, name path generator, social card
 ```
 
 ## Deployment
