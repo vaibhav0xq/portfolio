@@ -8,19 +8,30 @@
 // Node 22.18 or newer, which imports src/content/site.ts directly. Run it again after changing the hero copy.
 
 import { spawnSync } from 'node:child_process';
-import { copyFileSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const args = process.argv.slice(2);
-const flag = (name, fallback) => {
-  const i = args.indexOf(name);
-  return i === -1 ? fallback : args[i + 1];
-};
-const out = path.resolve(ROOT, flag('--out', 'public/og.png'));
-const keepHtml = args.includes('--keep-html');
+let out = path.resolve(ROOT, 'public/og.png');
+let keepHtml = false;
+for (let i = 0; i < args.length; i++) {
+  const arg = args[i];
+  if (arg === '--keep-html') keepHtml = true;
+  else if (arg === '--out') {
+    const value = args[++i];
+    if (!value || value.startsWith('--')) usage('--out needs a file path');
+    out = path.resolve(ROOT, value);
+  } else usage(`Unknown argument ${arg}`);
+}
+if (!existsSync(path.dirname(out))) usage(`The directory of ${out} does not exist`);
+
+function usage(msg) {
+  console.error(`${msg}\nUsage: node scripts/og-card.mjs [--out public/og.png] [--keep-html]`);
+  process.exit(1);
+}
 
 const { hero } = await import(pathToFileURL(path.join(ROOT, 'src/content/site.ts')).href).catch((error) => {
   console.error(`Could not load src/content/site.ts (${error.message}). Node 22.18 or newer strips the types itself.`);
@@ -35,14 +46,22 @@ const doodle = (name) => pathToFileURL(path.join(ROOT, 'public/doodles', `${name
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 // The print is narrower than the hero's, so the indentation is halved to keep the long lines whole.
-const codeLines = code.lines
-  .slice(0, 12)
+const shown = code.lines.slice(0, 12);
+if (code.mark.line >= shown.length) {
+  console.error(`The ring sits on line ${code.mark.line + 1} of the code print but the card shows ${shown.length} lines.`);
+  process.exit(1);
+}
+const codeLines = shown
   .map((full, i) => {
-    const indent = full.match(/^ */)[0].length / 2;
-    const line = full.slice(indent);
+    const removed = Math.floor(full.match(/^ */)[0].length / 2);
+    const line = full.slice(removed);
     if (i !== code.mark.line) return esc(line);
-    const start = code.mark.start - indent;
+    const start = code.mark.start - removed;
     const end = start + code.mark.length;
+    if (start < 0 || end > line.length) {
+      console.error(`The ring (start ${code.mark.start}, length ${code.mark.length}) falls outside line ${i + 1}.`);
+      process.exit(1);
+    }
     return `${esc(line.slice(0, start))}<span class="ring">${esc(line.slice(start, end))}</span>${esc(line.slice(end))}`;
   })
   .join('\n');
@@ -134,6 +153,8 @@ const html = `<!DOCTYPE html>
     <span class="mark">${esc(hero.titleMark)}<svg viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M3 12 C 60 4, 120 16, 180 9 S 260 6, 297 11" fill="none" stroke="#d13b2c" stroke-width="5" stroke-linecap="round" opacity="0.85" /></svg></span>
   </h1>
 
+  <!-- The card's own shorter lede. The hero lede in site.ts runs past the 580px column, so this
+       is edited by hand and needs a look whenever the hero copy changes. -->
   <p class="abs lede">A year as the Discord moderator at <b>Talus Labs, Inc.</b> Now developing my own products end to end, from Solidity contracts to the frontend. Kyro, the latest, is live on Arc mainnet.</p>
   <div class="abs pen">${esc(hero.note)}</div>
   <div class="abs url"><b>vaibhav0xq.com</b> &nbsp;·&nbsp; vaibhav0xq on GitHub &nbsp;·&nbsp; vaibhav_0xq on X</div>
@@ -165,29 +186,36 @@ const html = `<!DOCTYPE html>
 const dir = mkdtempSync(path.join(tmpdir(), 'og-card-'));
 const page = path.join(dir, 'og.html');
 const shot = path.join(dir, 'og.png');
-writeFileSync(page, html);
-
-const result = spawnSync(
-  process.env.CHROME ?? 'chromium',
-  [
-    '--headless=new',
-    '--no-sandbox',
-    '--disable-gpu',
-    '--hide-scrollbars',
-    '--allow-file-access-from-files',
-    '--force-device-scale-factor=1',
-    '--window-size=1200,630',
-    '--virtual-time-budget=4000',
-    `--screenshot=${shot}`,
-    pathToFileURL(page).href,
-  ],
-  { stdio: 'pipe' },
-);
-if (result.status !== 0) {
-  console.error(result.stderr.toString());
-  process.exit(result.status ?? 1);
+const chrome = process.env.CHROME ?? 'chromium';
+try {
+  writeFileSync(page, html);
+  // A throwaway profile keeps the render away from any Chromium profile on the machine.
+  const result = spawnSync(
+    chrome,
+    [
+      '--headless=new',
+      '--no-sandbox',
+      '--disable-gpu',
+      '--hide-scrollbars',
+      '--allow-file-access-from-files',
+      '--force-device-scale-factor=1',
+      '--window-size=1200,630',
+      '--virtual-time-budget=4000',
+      `--user-data-dir=${path.join(dir, 'profile')}`,
+      `--screenshot=${shot}`,
+      pathToFileURL(page).href,
+    ],
+    { stdio: 'pipe', timeout: 60_000 },
+  );
+  if (result.error) throw new Error(`Could not run ${chrome}: ${result.error.message}`);
+  if (result.status !== 0) throw new Error(`${chrome} exited with ${result.status ?? result.signal}\n${result.stderr.toString()}`);
+  if (!existsSync(shot)) throw new Error(`${chrome} exited cleanly but wrote no screenshot\n${result.stderr.toString()}`);
+  copyFileSync(shot, out);
+  console.log(`Wrote ${path.relative(ROOT, out)} (1200 x 630)`);
+} catch (error) {
+  console.error(error.message);
+  process.exitCode = 1;
+} finally {
+  if (keepHtml) console.log(`HTML kept at ${page}`);
+  else rmSync(dir, { recursive: true, force: true });
 }
-copyFileSync(shot, out);
-if (keepHtml) console.log(`HTML kept at ${page}`);
-else rmSync(dir, { recursive: true, force: true });
-console.log(`Wrote ${path.relative(ROOT, out)} (1200 x 630)`);
