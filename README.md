@@ -2,6 +2,8 @@
 
 Source of my personal site: the community work I did at Talus Labs, the products I have built and how to reach me. One page, static, built with React and Vite.
 
+Live: [portfolio-zeta-liart-mxmb0dinaf.vercel.app](https://portfolio-zeta-liart-mxmb0dinaf.vercel.app)
+
 ## What is on the page
 
 - Work: the Discord moderation role at Talus Labs with a board of screenshots from the community.
@@ -61,7 +63,7 @@ scripts/          copy check, screenshot and click audit helpers, name path gene
 
 ## Deployment
 
-The build is static. `vercel.json` selects the Vite preset, points at `dist/public` and sets long lived caching for hashed assets, so importing the repository on Vercel needs no further settings.
+The build is static. `vercel.json` selects the Vite preset, points at `dist/public` and sets long lived caching for hashed assets, so importing the repository on Vercel needs no further settings. Every push to `main` deploys. The site URL is written into `index.html` (canonical link, `og:url` and the social card image), so a change of domain means updating those three lines.
 
 ## Contact
 
