@@ -2,7 +2,7 @@
 
 Source of my personal site: the community work I did at Talus Labs, the products I have built and how to reach me. One page, static, built with React and Vite.
 
-Live: [portfolio-zeta-liart-mxmb0dinaf.vercel.app](https://portfolio-zeta-liart-mxmb0dinaf.vercel.app)
+Live: [vaibhav0xq.com](https://vaibhav0xq.com)
 
 ## What is on the page
 
