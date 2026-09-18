@@ -7,14 +7,14 @@
   "type": "module",
   "packageManager": "pnpm@10.26.1",
   "engines": {
-    "node": ">=22"
+    "node": ">=22.12"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "check:copy": "bash scripts/check-copy.sh",
+    "check:copy": "node scripts/check-copy.mjs",
     "snap": "node scripts/snap.mjs",
     "audit:clicks": "node scripts/click-audit.mjs"
   },

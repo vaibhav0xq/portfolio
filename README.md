@@ -22,15 +22,15 @@ Source of my personal site: the community work I did at Talus Labs, the products
 ## Notes on the implementation
 
 - The preloader strokes my name as SVG paths generated from the Caveat font (`scripts/gen-name-path.mjs`).
-- The hero prints are painted on a canvas (`src/scene/faces.ts`) and used both as WebGL textures and as a plain DOM fallback. Phones, reduced motion and browsers without WebGL get the DOM version.
+- The hero prints are painted on a canvas (`src/scene/faces.ts`) and used both as WebGL textures and as a plain DOM fallback. Phones and browsers without WebGL get the DOM version.
 - The projects shelf is pinned and scrolls sideways on wide screens. Below 900px or with reduced motion the cards stack vertically.
 - Every raster image goes through `src/components/Img.tsx`, which retries failed loads and draws a placeholder at the right aspect ratio if a file never arrives.
 - The phone menu and the lightbox trap focus, close on Escape and return focus to the element that opened them. Scrolling is locked with a counted lock so one overlay closing under another cannot unfreeze the page.
-- Copy lives in `src/content/`, not in components. `scripts/check-copy.sh` enforces the house style: no em or en dashes, no comma before and/or, no emojis and no filler words.
+- Copy lives in `src/content/`, not in components. `scripts/check-copy.mjs` enforces the house style: no em or en dashes, no comma before and/or, no emojis and no filler words.
 
 ## Development
 
-Requires Node.js 22 or newer and pnpm 10.
+Requires Node.js 22.12 or newer and pnpm 10.
 
 ```sh
 pnpm install

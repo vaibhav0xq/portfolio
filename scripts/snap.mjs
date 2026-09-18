@@ -3,7 +3,7 @@
 // scrolled to any section before capture. Uses software WebGL so the 3D scene renders.
 //
 // Usage: node scripts/snap.mjs [--url http://localhost:5173/] [--width 1440] [--height 900] [--scroll "#products"]
-//        [--out /tmp/shot.png] [--wait 2500] [--static] [--eval "<js expression>"]
+//        [--out shot.png] [--wait 2500] [--static] [--eval "<js expression>"]
 // Needs a Chromium binary: the first one on PATH, or the path in the CHROME environment variable.
 // --scroll takes a CSS selector (scrolled into view) or a number of pixels.
 // --static renders with prefers-reduced-motion so entrance animations are skipped.
@@ -12,6 +12,8 @@
 
 import { spawn } from 'node:child_process';
 import { writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
 
 const args = Object.fromEntries(
   process.argv.slice(2).reduce((acc, arg, i, all) => {
@@ -25,7 +27,7 @@ const args = Object.fromEntries(
 
 const width = Number(args.width ?? 1440);
 const height = Number(args.height ?? 900);
-const out = args.out ?? `/tmp/portfolio-${width}x${height}.png`;
+const out = args.out ?? path.join(tmpdir(), `portfolio-${width}x${height}.png`);
 const wait = Number(args.wait ?? 2500);
 const port = process.env.PORT ?? '5173';
 const url = args.url ?? `http://localhost:${port}/`;
