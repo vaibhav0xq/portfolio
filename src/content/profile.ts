@@ -66,7 +66,7 @@ export const products: Product[] = [
       'LumenMarc verifies a B20 token against the published Coinbase list, compares live DEX pool prices with the Chainlink reference feed and reports the premium or discount in basis points, along with oracle freshness and market session state.',
       'It has a public JSON API and a 24 hour reading history. I built it for the Base Build Builder Quest for Tokenized Stocks.',
     ],
-    stack: 'React 19, Vite, Express, viem, Drizzle, Postgres, Netlify Functions',
+    stack: 'React 19, Vite, Express, viem, Drizzle, Postgres',
     links: [
       { label: 'lumenmarc.netlify.app', href: 'https://lumenmarc.netlify.app' },
       { label: 'GitHub', href: 'https://github.com/vaibhav0xq/lumenmarc' },
