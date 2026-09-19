@@ -3,9 +3,9 @@
 import type { DoodleName } from '@/components/Doodle';
 
 export const sections = [
+  { id: 'about', label: 'about' },
   { id: 'work', label: 'work' },
   { id: 'projects', label: 'projects' },
-  { id: 'about', label: 'about' },
   { id: 'hire', label: 'why me' },
   { id: 'contact', label: 'contact' },
 ];
@@ -111,7 +111,7 @@ type WorkRow = {
 };
 
 export const work = {
-  idx: '01 / experience',
+  idx: '02 / experience',
   title: 'Work',
   pen: 'two roles so far',
   rows: [
@@ -201,7 +201,7 @@ export const work = {
 };
 
 export const projects = {
-  idx: '02 / projects',
+  idx: '03 / projects',
   title: 'Projects',
   pen: 'screenshots and live links',
   hint: 'scroll to move along the shelf',
@@ -212,7 +212,7 @@ export const projects = {
 };
 
 export const about = {
-  idx: '03 / about',
+  idx: '01 / about',
   title: 'About',
   pen: 'the short version',
   text: [

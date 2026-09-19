@@ -24,7 +24,7 @@ function Line({ text }: { text: string }) {
 
 export function About() {
   return (
-    <Section id="about" idx={about.idx} title={about.title} pen={about.pen} className="pt-24 md:pt-32">
+    <Section id="about" idx={about.idx} title={about.title} pen={about.pen} className="pt-20 md:pt-28">
       <div className="grid gap-10 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] md:gap-16">
         <div>
           {about.text.map((t, i) => (

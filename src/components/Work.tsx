@@ -26,7 +26,7 @@ export function Work() {
   }, []);
 
   return (
-    <Section id="work" idx={work.idx} title={work.title} pen={work.pen} className="pt-20 md:pt-28">
+    <Section id="work" idx={work.idx} title={work.title} pen={work.pen} className="pt-24 md:pt-32">
       <div className="grid gap-6">
         {work.rows.map((row, i) => (
           <article key={row.role} className={`card reveal grid gap-5 px-6 py-6 md:grid-cols-[190px_1fr_250px] md:gap-8 md:px-8 md:py-7 ${i % 2 ? 'alt' : ''}`}>

@@ -96,9 +96,9 @@ export default function App() {
         <Nav />
         <main>
           <Hero revealed={revealed} printsLive={showScene && prints === 'live'} />
+          <About />
           <Work />
           <Projects />
-          <About />
           <Hire />
           <Contact />
         </main>
