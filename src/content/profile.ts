@@ -44,7 +44,7 @@ export const products: Product[] = [
       'Kyro indexes wallet history on Arc and five other EVM chains, verifies transaction backed attestations and returns an allow, caution or block verdict with reason codes, a USDC limit and the evidence behind it.',
       'It offers a public check workbench, a decision API, receipts and batch screening, with a TypeScript SDK on npm, an OpenAPI 3.1 contract and a docs site. The agent payment gate demo was built for ETHOnline 2026.',
     ],
-    stack: 'Next.js, TypeScript, Supabase Postgres, viem, OpenAPI, Vercel',
+    stack: 'Next.js, TypeScript, Supabase Postgres, viem, OpenAPI',
     links: [
       { label: 'thekyro.co', href: 'https://www.thekyro.co' },
       { label: 'Check workbench', href: 'https://www.thekyro.co/check' },

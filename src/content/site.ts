@@ -255,7 +255,7 @@ export const about = {
     },
     {
       label: 'day to day',
-      text: '`Git` and `GitHub Actions`, `Vercel` for Kyro and `Netlify` for LumenMarc, `Biome` for lint and format, `Notion` for notes and `VS Code`.',
+      text: '`Git` and `GitHub Actions`, `Netlify` for LumenMarc, `Biome` for lint and format, `Notion` for notes and `VS Code`.',
     },
   ],
 };
