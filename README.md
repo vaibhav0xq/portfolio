@@ -10,7 +10,7 @@ Live: [vaibhav0xq.com](https://vaibhav0xq.com)
 - Projects: Kyro, LumenMarc, Suho and Turnstile, each with a screenshot, the stack and links.
 - About: the tools I use and the product or job each one came from.
 - Why hire me: plain reasons, written in first person.
-- Contact: email, GitHub and X, plus the resume as a PDF.
+- Contact: email, GitHub, LinkedIn and X, plus the resume as a PDF.
 
 ## Stack
 
@@ -70,4 +70,5 @@ The build is static. `vercel.json` selects the Vite preset, points at `dist/publ
 
 - Email: hello@vaibhav0xq.com
 - GitHub: [vaibhav0xq](https://github.com/vaibhav0xq)
+- LinkedIn: [vaibhav0xq](https://www.linkedin.com/in/vaibhav0xq)
 - X: [vaibhav_0xq](https://x.com/vaibhav_0xq)

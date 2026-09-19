@@ -8,6 +8,7 @@ export const identity = {
   company: 'Talus Labs, Inc.',
   email: 'hello@vaibhav0xq.com',
   github: 'https://github.com/vaibhav0xq',
+  linkedin: 'https://www.linkedin.com/in/vaibhav0xq',
   x: 'https://x.com/vaibhav_0xq',
   handle: 'vaibhav_0xq',
 };

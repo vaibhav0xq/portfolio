@@ -56,6 +56,9 @@ export function Contact() {
             <a href={identity.github} target="_blank" rel="noreferrer" className="box">
               github
             </a>
+            <a href={identity.linkedin} target="_blank" rel="noreferrer" className="box">
+              linkedin
+            </a>
             <a href={identity.x} target="_blank" rel="noreferrer" className="box">
               x, @{identity.handle}
             </a>
