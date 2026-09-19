@@ -216,12 +216,12 @@ export const about = {
   title: 'About',
   pen: 'the short version',
   text: [
-    'I am Vaibhav, a solo developer from Gujarat, India, with a Bachelor of Engineering in Computer Science and Engineering (2021 to 2024). I work remotely.',
+    'I am Vaibhav, a solo developer from Gujarat, India, with a Diploma in Computer Engineering (2021 to 2024). I work remotely.',
     'I started in web3 on the community side, answering members and handling incidents for a year as an official Discord moderator. Then I began building the products I kept wishing existed. On the other side I am a small content creator.',
   ],
   facts: [
     { k: 'based in', v: 'Gujarat, India, remote' },
-    { k: 'education', v: 'BE, Computer Science and Engineering, 2021 to 2024' },
+    { k: 'education', v: 'Diploma, Computer Engineering, 2021 to 2024' },
     { k: 'building since', v: 'March 2026' },
     { k: 'chains so far', v: 'Arc, Base, GIWA, Monad, Sui, Solana' },
   ],

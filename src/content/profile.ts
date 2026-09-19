@@ -3,7 +3,7 @@
 
 export const identity = {
   name: 'Vaibhav Gangani',
-  education: 'Bachelor of Engineering in Computer Science and Engineering',
+  education: 'Diploma in Computer Engineering',
   educationPeriod: '2021 to 2024',
   company: 'Talus Labs, Inc.',
   email: 'hello@vaibhav0xq.com',
