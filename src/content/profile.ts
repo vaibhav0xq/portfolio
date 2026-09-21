@@ -96,15 +96,21 @@ export const products: Product[] = [
     index: '04',
     name: 'Turnstile',
     tagline: 'Identity bound tickets and access on Monad',
-    status: 'In progress on Monad testnet',
+    status: 'Live on Monad testnet',
     chain: 'Monad',
     period: 'Sep 2026 to Present',
+    image: 'projects/turnstile.png',
+    imageAlt: 'Turnstile city entrance with the Neon Night at Metropolis venue',
+    imageSize: [1920, 1080],
     points: [
       'Turnstile is passkey ticketing: one WebAuthn credential derives the purchase account, a per event door key that signs rotating entry codes and an AES-256-GCM key for a private passport. Users need no seed phrase and no wallet app.',
       'It runs on Foundry contracts on Monad testnet with 62 tests, a sponsored ERC-2771 relayer in Hono, an Envio HyperIndex indexer and a 3D city, venue and seat picker in React Three Fiber. It is my solo entry for Monad Metropolis.',
     ],
     stack: 'Solidity, Foundry, TypeScript, Hono, Envio, React Three Fiber',
-    links: [{ label: 'GitHub', href: 'https://github.com/vaibhav0xq/turnstile' }],
+    links: [
+      { label: 'turnstile.work', href: 'https://turnstile.work' },
+      { label: 'GitHub', href: 'https://github.com/vaibhav0xq/turnstile' },
+    ],
   },
 ];
 

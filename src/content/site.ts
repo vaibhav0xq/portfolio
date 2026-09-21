@@ -206,7 +206,7 @@ export const projects = {
   pen: 'screenshots and live links',
   hint: 'scroll to move along the shelf',
   open: 'open',
-  noImage: 'no screenshot yet, in progress on Monad testnet',
+  noImage: 'no screenshot yet',
   earlierTitle: 'Earlier builds',
   earlierText: 'Two smaller products from before Kyro. Both public on GitHub.',
 };
